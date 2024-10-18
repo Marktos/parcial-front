@@ -11,6 +11,9 @@ import 'vue3-carousel/dist/carousel.css'
 const bookStore = useBookStore();
 const featuredBooks: Book[] = bookStore.getFeatured();
 
+import { useCartStore } from '@/stores/CartStore';
+const carritoStore = useCartStore()
+
 // Parcial: Explica como funciona el feature component, como muestra los libros recomendados y como los obtiene?
 
 // configuracion del carrusel
@@ -64,7 +67,8 @@ const cSettings = {
                                 class="block rounded-lg bg-transparent py-1.5 px-4 font-medium text-slate-200 transition-colors hover:bg-slate-900 active:bg-slate-900 disabled:opacity-50">Mas
                                 del Autor</button>
 
-                            <button
+                            <button 
+                                @click="() => carritoStore.addBook(book)"
                                 class="flex flex-row rounded-lg border border-slate-200 bg-slate-500 py-1.5 justify-between px-4 font-medium text-white transition-colors hover:bg-slate-950 active:bg-slate-950 disabled:opacity-50">
                                 <PlusCircleIcon class="text-2xl size-6 text-slate-200 m-auto" />
                                 <span class="w-2"></span>
@@ -82,7 +86,7 @@ const cSettings = {
                 <Navigation>
                     <template #prev>
                         <span class="arrow">
-                            < </span>
+                            </span>
                     </template>
                     <template #next>
                         <span class="arrow">></span>

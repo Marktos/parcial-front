@@ -5,6 +5,9 @@ import type { Book } from '@/models/BookModel'
 // libreria
 import Rating from 'primevue/rating';
 
+import { useCartStore } from '@/stores/CartStore';
+const carritoStore = useCartStore();
+
 const bookStore = useBookStore();
 const books: Book[] = bookStore.getAllBooks();
 
@@ -27,7 +30,7 @@ const books: Book[] = bookStore.getAllBooks();
                 <div class="price">$ {{ book.price }}.00</div>
                 <div class="overlay">
                     <!-- al hacer click en comprar el libro debera agregarse al carro -->
-                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-buy" @click="() => carritoStore.addBook(book)">Comprar</button>
                 </div>
             </div>
         </div>
